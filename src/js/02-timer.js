@@ -2,8 +2,9 @@ import flatpickr from "flatpickr";
 import "flatpickr/dist/flatpickr.min.css";
 
 let chosenDate = null;
+let timerId = null;
 
-const currentDate = new Date();
+// const currentDate = Date.now();
 
 const refs = {
   btnStart: document.querySelector('button[data-start]'),
@@ -21,7 +22,7 @@ const options = {
   defaultDate: new Date(),
   minuteIncrement: 1,
     onClose(selectedDates) {
-        if (selectedDates[0] < currentDate) {
+        if (selectedDates[0] < Date.now()) {
             window.alert("Please choose a date in the future");            
       }      
       chosenDate = selectedDates[0];
@@ -37,15 +38,15 @@ flatpickr(refs.flatPicktInit, options);
 
 function Countdown() {
   
-  setInterval(() => {
-    // const timeDifference = chosenDate.getTime() - currentDate.getTime();    
-  const timeDifference = Date.parse(chosenDate) - Date.parse(currentDate);
-  const resultTime = convertMs(timeDifference);
-  refs.dataDay.textContent = resultTime.days;
-  refs.dataHours.textContent = resultTime.hours;
-  refs.dataMinutes.textContent = resultTime.minutes;
-  refs.dataSeconds.textContent = resultTime.seconds; 
-  }, 1000);  
+  timerId = setInterval(() => {       
+    const timeDifference = chosenDate.getTime() - Date.now();
+    const resultTime = convertMs(timeDifference);
+    refs.dataDay.textContent = resultTime.days;
+    refs.dataHours.textContent = resultTime.hours;
+    refs.dataMinutes.textContent = resultTime.minutes;
+    refs.dataSeconds.textContent = resultTime.seconds; 
+  }, 1000);
+ 
 }
 
 function convertMs(ms) {
