@@ -44,7 +44,10 @@ function Countdown() {
     refs.dataDay.textContent = resultTime.days;
     refs.dataHours.textContent = resultTime.hours;
     refs.dataMinutes.textContent = resultTime.minutes;
-    refs.dataSeconds.textContent = resultTime.seconds; 
+    refs.dataSeconds.textContent = resultTime.seconds;
+    if (resultTime.days === '00' && resultTime.hours === '00' && resultTime.minutes === '00' && resultTime.seconds === '00') {
+      clearInterval(timerId);
+    }
   }, 1000);
  
 }
