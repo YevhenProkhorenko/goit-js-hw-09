@@ -4,7 +4,7 @@ import "flatpickr/dist/flatpickr.min.css";
 let chosenDate = null;
 let timerId = null;
 
-// const currentDate = Date.now();
+const currentDate = Date.now();
 
 const refs = {
   btnStart: document.querySelector('button[data-start]'),
@@ -22,7 +22,7 @@ const options = {
   defaultDate: new Date(),
   minuteIncrement: 1,
     onClose(selectedDates) {
-        if (selectedDates[0] < Date.now()) {
+        if (selectedDates[0] < currentDate) {
             window.alert("Please choose a date in the future");            
       }      
       chosenDate = selectedDates[0];
@@ -34,7 +34,7 @@ const options = {
 
 flatpickr(refs.flatPicktInit, options);
 
-
+addLeadingZero(Countdown)
 
 function Countdown() {
   
@@ -57,13 +57,18 @@ function convertMs(ms) {
   const day = hour * 24;
 
   // Remaining days
-  const days = Math.floor(ms / day);
+  const days = addLeadingZero(Math.floor(ms / day));
   // Remaining hours
-  const hours = Math.floor((ms % day) / hour);
+  const hours = addLeadingZero(Math.floor((ms % day) / hour));
   // Remaining minutes
-  const minutes = Math.floor(((ms % day) % hour) / minute);
+  const minutes = addLeadingZero(Math.floor(((ms % day) % hour) / minute));
   // Remaining seconds
-  const seconds = Math.floor((((ms % day) % hour) % minute) / second);
+  const seconds = addLeadingZero(Math.floor((((ms % day) % hour) % minute) / second));
 
   return { days, hours, minutes, seconds };
+}
+
+
+function addLeadingZero(value) {
+  return String(value).padStart(2, '0')
 }
