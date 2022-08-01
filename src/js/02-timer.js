@@ -45,6 +45,8 @@ function Countdown() {
     refs.dataHours.textContent = resultTime.hours;
     refs.dataMinutes.textContent = resultTime.minutes;
     refs.dataSeconds.textContent = resultTime.seconds;
+    refs.btnStart.setAttribute('disabled', 'disabled');
+    refs.flatPicktInit.setAttribute('disabled', 'disabled');
     if (resultTime.days === '00' && resultTime.hours === '00' && resultTime.minutes === '00' && resultTime.seconds === '00') {
       clearInterval(timerId);
     }
