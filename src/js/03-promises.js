@@ -15,11 +15,10 @@ let timerID = 0;
 
 submitBtn.addEventListener('click', pushSubmit);
 
-function pushSubmit() {
-  console.log(firstDelay, delayStep, amountProm)
+function pushSubmit() {  
 
   for (let i = 0; i <= amountProm; i += 1){
-    createPromise(amountProm, delayStep);
+    createPromise(i, firstDelay).then().catch();
   }
 
   // setInterval(() => {  
@@ -33,9 +32,9 @@ function createPromise(position, delay) {
   return new Promise((resolve, reject) => {
   setTimeout(() => {
     if (shouldResolve) {
-    resolve(console.log(`✅ Fulfilled promise ${position} in ${delay}ms`));
+    resolve(`✅ Fulfilled promise ${position} in ${delay}ms`);
   } else {     
-    reject(console.log(`❌ Rejected promise ${position} in ${delay}ms`)); 
+    reject(`❌ Rejected promise ${position} in ${delay}ms`); 
   }
   }, firstDelay);
   })  
