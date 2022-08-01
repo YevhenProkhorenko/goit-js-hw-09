@@ -50,7 +50,7 @@ function Countdown() {
     refs.flatPicktInit.setAttribute('disabled', 'disabled');
     if (timeDifference < 1000) {
       clearInterval(timerId);
-      refs.btnStart.removeAttribute('disabled');
+      refs.flatPicktInit.removeAttribute('disabled');
     }
   }, 1000);
  
