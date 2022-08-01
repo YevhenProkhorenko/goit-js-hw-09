@@ -23,11 +23,15 @@ const options = {
   defaultDate: new Date(),
   minuteIncrement: 1,
     onClose(selectedDates) {
-      if (selectedDates[0] < currentDate) {
-        Notiflix.Notify.failure("Please choose a date in the future");                       
-      }      
+      if (selectedDates[0] < currentDate) {        
+        Notiflix.Notify.failure("Please choose a date in the future")
+        refs.btnStart.setAttribute('disabled', 'disabled');    
+      }
+      else {        
+        refs.btnStart.removeAttribute('disabled');
+      }
       chosenDate = selectedDates[0];
-      refs.btnStart.removeAttribute('disabled');
+      
       refs.btnStart.addEventListener('click', Countdown);
       // console.log(chosenDate)
   },
@@ -42,12 +46,14 @@ function Countdown() {
   timerId = setInterval(() => {       
     const timeDifference = chosenDate.getTime() - Date.now();
     const resultTime = convertMs(timeDifference);
+
     refs.dataDay.textContent = resultTime.days;
     refs.dataHours.textContent = resultTime.hours;
     refs.dataMinutes.textContent = resultTime.minutes;
     refs.dataSeconds.textContent = resultTime.seconds;
     refs.btnStart.setAttribute('disabled', 'disabled');
     refs.flatPicktInit.setAttribute('disabled', 'disabled');
+
     if (timeDifference < 1000) {
       clearInterval(timerId);
       refs.flatPicktInit.removeAttribute('disabled');
