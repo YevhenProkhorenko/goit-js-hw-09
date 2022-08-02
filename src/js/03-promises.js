@@ -11,7 +11,7 @@ function pushSubmit(e) {
   const amountProm = Number(form.elements.amount.value);
   let firstDelay = Number(form.elements.delay.value);
 
-  for (let i = 0; i < amountProm; i += 1){
+  for (let i = 1; i <= amountProm; i += 1){
 
     setTimeout(() => {
       createPromise(i, delayStep).then(({ position, delay }) => {
