@@ -42,6 +42,8 @@ flatpickr(refs.flatPicktInit, options);
 addLeadingZero(Countdown)
 
 function Countdown() {
+  refs.btnStart.setAttribute('disabled', 'disabled');
+  refs.flatPicktInit.setAttribute('disabled', 'disabled');
   
   timerId = setInterval(() => {       
     const timeDifference = chosenDate.getTime() - Date.now();
@@ -51,8 +53,7 @@ function Countdown() {
     refs.dataHours.textContent = resultTime.hours;
     refs.dataMinutes.textContent = resultTime.minutes;
     refs.dataSeconds.textContent = resultTime.seconds;
-    refs.btnStart.setAttribute('disabled', 'disabled');
-    refs.flatPicktInit.setAttribute('disabled', 'disabled');
+    
 
     if (timeDifference < 1000) {
       clearInterval(timerId);
